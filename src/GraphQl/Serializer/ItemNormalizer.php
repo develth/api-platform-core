@@ -98,7 +98,10 @@ final class ItemNormalizer extends BaseItemNormalizer
     protected function normalizeCollectionOfRelations(ApiProperty $propertyMetadata, iterable $attributeValue, string $resourceClass, ?string $format, array $context): array
     {
         // to-many are handled directly by the GraphQL resolver
-        return [];
+        return match($resourceClass){
+            "App\Model\PhraseTagClassMethod" => $attributeValue,
+            default => []
+        };
     }
 
     /**
