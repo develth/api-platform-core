@@ -92,6 +92,7 @@ final class Get extends HttpOperation
         $processor = null,
         OptionsInterface $stateOptions = null,
         array $extraProperties = [],
+        private ?string $itemUriTemplate = null,
     ) {
         parent::__construct(
             uriTemplate: $uriTemplate,
@@ -166,5 +167,18 @@ final class Get extends HttpOperation
             stateOptions: $stateOptions,
             extraProperties: $extraProperties,
         );
+    }
+
+    public function getItemUriTemplate(): ?string
+    {
+        return $this->itemUriTemplate;
+    }
+
+    public function withItemUriTemplate(string $itemUriTemplate): self
+    {
+        $self = clone $this;
+        $self->itemUriTemplate = $itemUriTemplate;
+
+        return $self;
     }
 }
