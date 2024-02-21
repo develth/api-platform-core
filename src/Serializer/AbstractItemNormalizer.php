@@ -669,6 +669,7 @@ abstract class AbstractItemNormalizer extends AbstractObjectNormalizer
                 && $this->resourceClassResolver->isResourceClass($className)
             ) {
                 $childContext = $this->createChildContext($this->createOperationContext($context, $className), $attribute, $format);
+                unset($childContext['iri'], $childContext['uri_variables'], $childContext['item_uri_template']);
 
                 // @see ApiPlatform\Hal\Serializer\ItemNormalizer:getComponents logic for intentional duplicate content
                 // @see ApiPlatform\JsonApi\Serializer\ItemNormalizer:getComponents logic for intentional duplicate content
